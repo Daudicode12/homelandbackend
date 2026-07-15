@@ -16,7 +16,7 @@ export const autoReleaseEscrow = async () => {
       await approveAndReleaseEscrow(contract.id, contract.amount, contract.freelancer_id);
       released++;
     } catch (err) {
-      console.error(\`Failed to auto-release contract \${contract.id}:\`, err);
+      console.error(`Failed to auto-release contract ${contract.id}:`, err);
     }
   }
 
