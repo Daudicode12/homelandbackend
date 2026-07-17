@@ -85,3 +85,32 @@ CREATE TABLE IF NOT EXISTS disputes (
     FOREIGN KEY (contract_id) REFERENCES contracts(id) ON DELETE CASCADE,
     FOREIGN KEY (opened_by) REFERENCES users(id) ON DELETE CASCADE
 );
+CREATE TABLE reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+
+    contract_id INT NOT NULL,
+    employer_id INT NOT NULL,
+    freelancer_id INT NOT NULL,
+
+    rating TINYINT NOT NULL,
+    comment TEXT NOT NULL,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_review_contract
+        FOREIGN KEY (contract_id) REFERENCES contracts(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_review_employer
+        FOREIGN KEY (employer_id) REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_review_freelancer
+        FOREIGN KEY (freelancer_id) REFERENCES users(id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT chk_rating
+        CHECK (rating BETWEEN 1 AND 5),
+
+    UNIQUE (contract_id)
+);
