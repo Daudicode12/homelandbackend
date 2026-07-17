@@ -51,9 +51,16 @@ export const acceptProposal = async (req, res, next) => {
       return errorResponse(res, 404, 'Proposal not found for this job.');
     }
 
-    await proposalService.acceptProposalTransaction(jobId, proposalId, employerId, proposal.freelancer_id);
+    const contractId = await proposalService.acceptProposalTransaction(
+      jobId,
+      proposalId,
+      employerId,
+      proposal.freelancer_id
+    );
 
-    return successResponse(res, 200, 'Proposal accepted and contract created.', {});
+    return successResponse(res, 200, 'Proposal accepted and contract created.', {
+      contractId,
+    });
   } catch (err) {
     next(err);
   }
