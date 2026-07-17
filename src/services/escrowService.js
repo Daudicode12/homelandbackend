@@ -58,6 +58,11 @@ export const approveAndReleaseEscrow = async (contractId, amount, freelancerId) 
       'UPDATE escrow SET status = ? WHERE contract_id = ?',
       ['released', contractId]
     );
+    // update contract status to 'approved' and set approved_at timestamp
+    await connection.execute(
+      'UPDATE contracts SET status = ?, approved_at = CURRENT_TIMESTAMP WHERE id = ?',
+      ['approved', contractId]
+    );
 
     await connection.commit();
     return distribution;
