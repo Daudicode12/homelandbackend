@@ -51,10 +51,10 @@ export const acceptProposalTransaction = async (jobId, proposalId, employerId, f
       VALUES (?, ?, ?, ?, ?, ?)
     `;
     const contractValues = [jobId, proposalId, employerId, freelancerId, amount, 'pending'];
-    await connection.execute(contractSql, contractValues);
+    const [contractResult] = await connection.execute(contractSql, contractValues);
 
     await connection.commit();
-    return true;
+    return contractResult.insertId;
   } catch (error) {
     await connection.rollback();
     throw error;
