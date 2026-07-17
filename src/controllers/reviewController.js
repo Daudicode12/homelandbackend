@@ -30,6 +30,8 @@ export const getFreelancerReviews = async (req, res) => {
     return successResponse(res, 200, 'Reviews fetched successfully.', data);
   } catch (error) {
     console.error('Get Freelancer Reviews Error:', error);
-    return errorResponse(res, 500, 'Internal server error.');
+    const status = error.status || 500;
+    const message = error.status ? error.message : 'Internal server error.';
+    return errorResponse(res, status, message);
   }
 };
