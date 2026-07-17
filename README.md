@@ -280,7 +280,7 @@ database.sql       # Raw SQL schema definition to bootstrap tables
 ### **Contracts**
 
 #### Fund Contract
-- **Purpose**: Employer deposits funds into the platform Escrow.
+- **Purpose**: Employer deposits funds into the platform Escrow3.
 - **Method**: `POST`
 - **URL**: `/api/contracts/:id/fund`
 - **Auth**: Required
@@ -300,7 +300,7 @@ database.sql       # Raw SQL schema definition to bootstrap tables
 - **URL**: `/api/contracts/:id/deliver`
 - **Auth**: Required
 - **Role**: `freelancer`
-- **Success (200 OK)**:
+- **Success eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsInJvbGUiOiJlbXBsb3llciIsImlhdCI6MTc4NDE4MjQzMiwiZXhwIjoxNzg0MTg2MDMyfQ.QmOydUqzqW2D2bS_E9pnbfBHqDEXF33bSwqnLzKE5tw(200 OK)**:
   ```json
   { "success": true, "message": "Work marked as delivered.", "data": { "status": "delivered" } }
   ```
