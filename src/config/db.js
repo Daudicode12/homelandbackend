@@ -21,6 +21,6 @@ pool.getConnection()
   .catch(err => {
     console.error('MySQL database connection failed', err);
   });
-
+// this is the database connection pool
 export const query = (text, params) => pool.execute(text, params);
 export { pool };
