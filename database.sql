@@ -7,8 +7,10 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(50) NOT NULL,
     average_rating DECIMAL(3, 2) DEFAULT 0.00,
     total_reviews INT DEFAULT 0,
+    status VARCHAR(50) DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT chk_role CHECK (role IN ('freelancer', 'employer'))
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT chk_role CHECK (role IN ('admin', 'freelancer', 'employer'))
 );
 
 CREATE TABLE IF NOT EXISTS jobs (
@@ -20,7 +22,9 @@ CREATE TABLE IF NOT EXISTS jobs (
     location VARCHAR(255) NOT NULL,
     budget DECIMAL(10,2) NOT NULL,
     deadline DATETIME NOT NULL,
+    status VARCHAR(50) DEFAULT 'open',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (employer_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
