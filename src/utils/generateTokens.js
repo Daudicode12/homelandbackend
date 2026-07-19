@@ -3,7 +3,9 @@ import { env } from '../config/env.js';
 
 export const generateTokens = (user) => {
   const payload = {
-    userId: user.id,
+    id: user.id,
+    userId: user.id, // For backwards compatibility
+    email: user.email,
     role: user.role,
   };
 
