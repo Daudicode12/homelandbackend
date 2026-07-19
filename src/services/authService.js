@@ -37,8 +37,6 @@ export const createUser = async (userData) => {
   const values = [name, email, phone, hashedPassword, role];
   
   const [result] = await query(text, values);
-  // inserting the admin user into the database and returning the newly created user object
-  await query('INSERT INTO users (id, name, email, phone, password, role) VALUES (?, "admin", "admin@homeland.com", "254712345678", ?, "admin")', [result.insertId, hashedPassword]);
   
   // Fetch and return the newly created user (excluding password if you prefer, or select specific fields)
   const [newUser] = await query(
